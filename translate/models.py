@@ -1,7 +1,4 @@
-from unittest import TestCase
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
 
 LANGUAGE_CHOICES = (
     ('c++', 'C++'),
