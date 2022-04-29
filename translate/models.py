@@ -9,18 +9,17 @@ LANGUAGE_CHOICES = (
 )
 
 
-class Source(models.Model):
+class Input(models.Model):
 
-    language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
-    code = models.TextField()
-    testcase = models.TextField()
-    output = models.TextField()
+    source_lang = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
+    source_code = models.TextField()
+    source_testcase = models.TextField()
+    source_output = models.TextField()
+    
+    target_language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
+    target_code = models.TextField()
+    target_testcase = models.TextField()
+    target_output = models.TextField()
 
 
-class Target(models.Model):
-
-    language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
-    code = models.TextField()
-    testcase = models.TextField()
-    output = models.TextField()
 
