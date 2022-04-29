@@ -14,6 +14,7 @@ class Source(models.Model):
     language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
     code = models.TextField()
     testcase = models.TextField()
+    output = models.TextField()
 
 
 class Target(models.Model):
@@ -21,4 +22,5 @@ class Target(models.Model):
     language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
     code = models.TextField()
     testcase = models.TextField()
+    output = models.TextField()
 
