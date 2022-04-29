@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <header>
+        <h1><a href="/">Code2Code Translator</a></h1>
+    </header>
+
+    <form action="" method="post">
+
+        {% csrf_token %}
+        <!-- {% render_field form.source_code class="form-control" %}
+
+        {% render_field form.target_code class="input" placeholder="Target" %} -->
+
+        {{form}}
+
+        <input type="submit" value="Submit">
+
+    </form>
+{% endblock %}
