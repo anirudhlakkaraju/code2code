@@ -11,7 +11,7 @@ LANGUAGE_CHOICES = (
 
 class Input(models.Model):
 
-    source_lang = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
+    source_language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
     source_code = models.TextField()
     source_testcase = models.TextField()
     source_output = models.TextField()
