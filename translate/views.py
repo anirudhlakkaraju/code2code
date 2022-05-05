@@ -38,15 +38,18 @@ def home(request):
             source_code = form.cleaned_data['source_code']
             target_language = form.cleaned_data['target_language']
 
+            # DO STUFF WITH DATA
+            # 1. Test with small model
+            # 2. Make it pretty
+            # 3. Ajax (reroute to same page)
+            # 4. Connect actual model
+            # 5. Create rest API
+                
+            # Prediction is done and we have target_code.txt
+
             return HttpResponseRedirect('result')
 
 
-        # DO STUFF WITH DATA
-        # 1. Test with small model
-        # 2. Make it pretty
-        # 3. Ajax (reroute to same page)
-        # 4. Connect actual model
-        # 5. Create rest API
 
     # Creates empty form on GET request
     else: 
