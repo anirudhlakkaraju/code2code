@@ -1,0 +1,38 @@
+.main-box {
+    max-width: 1200px;
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* border: 3px solid black; */
+}
+
+.box1 {
+    max-width: 1000px;
+    min-height: 400;
+    position: absolute;
+    margin-bottom: 150px;
+    /* border: 3px solid red; */
+
+}
+
+.box2 {
+    margin-bottom: -300px;
+    /* margin-top: 100px; */
+    /* justify-content: center;
+    display: flex;
+    align-items: center; */
+    /* z-index: 10; */
+    /* border: 3px solid blue; */
+
+}
+
+.title {
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+.font{
+    font-size: medium;
+}
