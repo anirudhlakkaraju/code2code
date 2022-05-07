@@ -13,7 +13,7 @@ class Input(models.Model):
     source_testcase = models.TextField()
     source_output = models.TextField()
     
-    target_language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='c++')
+    target_language = models.CharField(max_length=10, choices=LANGUAGE_CHOICES, default='python')
     translated_code = models.TextField(blank=True)
     target_testcase = models.TextField()
     target_output = models.TextField()
