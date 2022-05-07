@@ -7,43 +7,46 @@
 {% load static %}
 
     <header>
-        <link rel="stylesheet"  href="{%  static  'css/style.css'  %}">
-        <h1 class="text-center"><a href="/">Code2Code Translator</a></h1>
+        <link rel="stylesheet"  href="{%  static  'css/translate.css'  %}">
+        <h1 class="text-center title"><a href="{% url 'home'%}">Code2Code Translator</a></h1>
     </header>
 
-    <form action="" method="post">
+    <form id="inputForm" action="" method="post">
 
         {% csrf_token %}
-       <div class="container main-box d-flex justify-content-center align-items-center">
+       <div class="container main-box">
            
-           <div class="form-row">
-               <div class="form-group col-md-5">
-                   <label for="SourceLanguageSelection">Source Language</label>
-                   {% render_field form.source_language id="SourceLanguageSelection" class="form-control" %}
-               </div>
-   
-               <div class="form-group col-md-5">
-                   <label for="TargetLanguageSelection">Target Language</label>
-                   {% render_field form.target_language id="TargetLanguageSelection" class="form-control" %}
-               </div>
-           </div>
+           <div class="container-sm box1">
+               <div class="container form-row">
+                   <div class="form-group col-md-6">
+                       <label for="SourceLanguageSelection" class="font">Source Language</label>
+                       {% render_field form.source_language id="SourceLanguageSelection" class="form-control font" %}
+                   </div>
            
-   
-           <div class="form-row ">
-               <div class="form-group col-md-5">
-                   <label for="SourceCodeInput">Source Code</label>
-                   {% render_field form.source_code type="text" class="form-control" id="SourceCodeInput" placeholder="Source Code" %}
+                   <div class="form-group col-md-6">
+                       <label for="TargetLanguageSelection" class="font">Target Language</label>
+                       {% render_field form.target_language id="TargetLanguageSelection" class="form-control font" %}
+                   </div>
                </div>
-               <div class="form-group col-md-5">
-                   <label for="TargetCode">Target Code</label>
-                   {% render_field form.target_code type="text" class="form-control" id="TargetCode" placeholder="Target Code" %}
+               
+           
+               <div class="container form-row">
+                   <div class="form-group col-md-6">
+                       <label for="SourceCodeInput" class="font">Source Code</label>
+                       {% render_field form.source_code type="text" class="form-control font" id="SourceCode" placeholder="Source Code" %}
+                   </div>
+                   <div class="form-group col-md-6">
+                       <label for="TranslatedCode" class="font">Translated Code</label>
+                       {% render_field form.translated_code type="text" class="form-control font" id="TranslatedCode" placeholder="Translated Code" %}
+                   </div>
                </div>
-           </div>
+            </div>
+               
    
-           <div class="container">
-               <div class="col-md-10 text-center">
-                   <input type="submit" class="btn btn-primary" value="Translate">
-                   <button type="button" class="btn btn-warning" onclick="this.form.reset();">Clear</button>
+           <div class="container box2">
+               <div class="text-center">
+                   <input type="submit" class="btn btn-primary font" style="z-index: auto;" value="Translate">
+                   <button type="button" class="btn btn-warning font" onclick="this.form.reset();">Clear</button>
                </div>
            </div>
 
@@ -54,3 +57,55 @@
 
     </form>
 {% endblock %}
+
+
+
+
+{% block javascript %}
+
+<script>
+    console.log("inside AJAX call");
+
+    // Send form inputs to "/translate" url as POST request
+    const url = "{% url 'translate' %}"
+
+    const inputForm = document.getElementById("inputForm");
+    var token = '{{csrf_token}}';
+    
+    // Function to execute on submitting form
+    inputForm.addEventListener("submit", async function(e) {
+
+        // Override default submit action
+        e.preventDefault()
+
+        console.log("Translate button is clicked")
+        
+        // Dictionary to store form inputs
+        let inputFormResponse = {}
+
+        inputFormResponse["sourceLanguage"] = document.getElementById("SourceLanguageSelection").value 
+        inputFormResponse["targetLanguage"] = document.getElementById("TargetLanguageSelection").value
+        inputFormResponse["sourceCode"] = document.getElementById("SourceCode").value;
+
+        console.log(inputFormResponse)
+
+        // Sending response and wait for translated text
+        const resbody = await fetch(url, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": token,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(inputFormResponse)
+        });
+        
+        const translatedCode = await resbody.json()
+        // const translatedCode = resbody.json()
+        console.log(translatedCode)
+
+        document.getElementById("TranslatedCode").value = translatedCode["Response"]
+        // Display translated text
+    });
+</script>
+<!-- </script> -->
+{% endblock javascript %}
