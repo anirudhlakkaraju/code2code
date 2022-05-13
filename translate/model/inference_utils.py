@@ -1,5 +1,5 @@
-from .run import *
-# from bleu import _bleu
+from run import *
+from bleu import _bleu
 
 def convert_examples_to_features(examples, tokenizer, max_source_length, max_target_length, stage=None):
     features = []
@@ -91,48 +91,59 @@ def convert_examples_to_features(examples, tokenizer, max_source_length, max_tar
 #     eval_dataloader = DataLoader(eval_data, sampler=eval_sampler, batch_size=eval_batch_size)
 #     return test_file, eval_examples, eval_dataloader
 
-def get_eval_dataloader(code_string, eval_batch_size, max_source_length, max_target_length, tokenizer):
+# def get_eval_dataloader(code_string, eval_batch_size, max_source_length, max_target_length, tokenizer):
     
     
+#     eval_examples = read_example(code_string)
+#     eval_features = convert_examples_to_features(eval_examples, tokenizer, 
+#                                                  max_source_length, max_target_length,stage='test')
+#     all_source_ids = torch.tensor([f.source_ids for f in eval_features], dtype=torch.long)
+#     all_source_mask = torch.tensor([f.source_mask for f in eval_features], dtype=torch.long)    
+#     eval_data = TensorDataset(all_source_ids,all_source_mask)   
+
+#     # Calculate bleu
+#     eval_sampler = SequentialSampler(eval_data)
+#     eval_dataloader = DataLoader(eval_data, sampler=eval_sampler, batch_size=eval_batch_size)
+#     return eval_examples, eval_dataloader, eval_data, all_source_ids, all_source_mask
+
+def get_eval_tensors(code_string, max_source_length, max_target_length, tokenizer):
+
     eval_examples = read_example(code_string)
     eval_features = convert_examples_to_features(eval_examples, tokenizer, 
                                                  max_source_length, max_target_length,stage='test')
     all_source_ids = torch.tensor([f.source_ids for f in eval_features], dtype=torch.long)
     all_source_mask = torch.tensor([f.source_mask for f in eval_features], dtype=torch.long)    
-    eval_data = TensorDataset(all_source_ids,all_source_mask)   
-
-    # Calculate bleu
-    eval_sampler = SequentialSampler(eval_data)
-    eval_dataloader = DataLoader(eval_data, sampler=eval_sampler, batch_size=eval_batch_size)
-    return eval_examples, eval_dataloader
+   
+    return all_source_ids, all_source_mask
 
 
-def sample_generation_single(eval_examples, eval_dataloader, model, model_type, tokenizer, max_target_length, 
+
+def sample_generation_single(all_source_ids, all_source_mask, model, model_type, tokenizer, max_target_length, 
                              device, do_sample=False, beam_size=1, temperature=0.5):
     p=[]
     pred_ids = []
-    for batch in eval_dataloader:
-        batch = tuple(t.to(device) for t in batch)
-        source_ids,source_mask= batch                  
-        with torch.no_grad():
-            if model_type == 'roberta':
-                    preds = model(source_ids=source_ids, source_mask=source_mask)
-            else:
-                preds = model.generate(source_ids,
-                                       attention_mask=source_mask,
-                                       use_cache=True,
-                                       num_beams=beam_size,
-                                       do_sample=do_sample,
-                                       temperature=temperature,
-                                       early_stopping=False, # 如果是summarize就设为True
-                                       max_length=max_target_length,
-                                       decoder_start_token_id=tokenizer.sep_token_id)
-                top_preds = list(preds.cpu().numpy())
-                pred_ids.extend(top_preds)
 
-        p = [tokenizer.decode(id, skip_special_tokens=True, 
-                                  clean_up_tokenization_spaces=False)
-                                  for id in pred_ids]
+    source_ids,source_mask = all_source_ids.to(device), all_source_mask.to(device)                 
+    
+    with torch.no_grad():
+        if model_type == 'roberta':
+                preds = model(source_ids=source_ids, source_mask=source_mask)
+        else:
+            preds = model.generate(source_ids,
+                                   attention_mask=source_mask,
+                                   use_cache=True,
+                                   num_beams=beam_size,
+                                   do_sample=do_sample,
+                                   temperature=temperature,
+                                   early_stopping=False, # 如果是summarize就设为True
+                                   max_length=max_target_length,
+                                   decoder_start_token_id=tokenizer.sep_token_id)
+            top_preds = list(preds.cpu().numpy())
+            pred_ids.extend(top_preds)
+
+    p = [tokenizer.decode(id, skip_special_tokens=True, 
+                              clean_up_tokenization_spaces=False)
+                              for id in pred_ids]
     return p
 
 
