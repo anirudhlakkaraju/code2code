@@ -6,12 +6,15 @@ from rest_framework.decorators import api_view
 from django.core import serializers 
 from rest_framework.response import Response 
 from rest_framework import status 
-from rest_framework.parsers import JSONParser 
+from rest_framework.parsers import JSONParser
 
 from .forms import InputForm
 from .models import Input 
 from .serializers import InputSerializer 
+from .model.inference_utils import *
+from translate.model.predict import predict 
 
+import torch
 import pickle
 import json 
 import numpy as np 
@@ -21,32 +24,39 @@ from django.shortcuts import render, redirect
 from django.contrib import messages 
 
 
-# class CodeTranslation(viewsets.ModelViewSet):
-#     queryset = Input.objects.all()
-#     serializer_class = InputSerializer
 
-# def is_ajax(request):
-#     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+# def process_python_output(prediction):
+#     lines = prediction.split("NEW_LINE")
+#     curr_indent = 0
+#     new_lines = []
+#     for line in lines:
+#         indent_count = line.count('INDENT')
+#         dedent_count = line.count('DEDENT')
+#         curr_indent += indent_count - dedent_count
+#         new_lines.append('\t'*curr_indent + line.replace('INDENT', '').replace('DEDENT', ''))
+#     return "\n".join(new_lines)
+
+
+# def predict(source_language, target_language, source_code):
+
+#     device = torch.device("cuda")
+#     model_type = "plbart"
+#     model, tokenizer = get_model(model_type, source_language, target_language)
+#     model.to(device)
+
+#     eval_batch_size = 1
+#     max_source_length, max_target_length = 400, 400
+
+#     eval_examples, eval_dataloader = get_eval_dataloader(source_code, eval_batch_size, 
+#                                                         max_source_length, max_target_length, tokenizer)
+
+#     pred = sample_generation_single(eval_examples, eval_dataloader, model, model_type, tokenizer, 
+#                             max_target_length, device)
+
+#     return process_python_output(pred[0])
+
 
 def home(request):
-
-    # if request.method=='POST' :  
-    #     # Create a form instance and populate with data given by user
-    #     form = InputForm(request.POST)
-    #     # Checking validity: 
-    #     if form.is_valid(): 
-            
-    #         # Extract user inputs
-    #         source_language = form.cleaned_data['source_language']
-    #         source_code = form.cleaned_data['source_code']
-    #         target_language = form.cleaned_data['target_language']
-
-    #         # PREDICT TARGET CODE
-
-    #         translated_code = source_code
-    #         return json.dumps({"submitted":"True"})
-
-    
     
     # Creates empty form on GET request
     form = InputForm()
@@ -68,10 +78,8 @@ def translate(request):
         source_code = response['sourceCode']
         target_language = response['targetLanguage']
 
-        # PREDICT TARGET CODE
-        # ....
-
-        translated_code = source_code
+        # Predict target code
+        translated_code = predict(source_language, target_language, source_code)
     
         # Return translated code to AJAX call       
         return JsonResponse({"Response":translated_code})
