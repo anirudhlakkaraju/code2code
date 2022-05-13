@@ -78,6 +78,9 @@ def translate(request):
         source_code = response['sourceCode']
         target_language = response['targetLanguage']
 
+        if source_language==target_language:
+            return JsonResponse({"Response":source_code})
+
         # Predict target code
         translated_code = predict(source_language, target_language, source_code)
     
