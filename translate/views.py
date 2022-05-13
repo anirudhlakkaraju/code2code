@@ -78,6 +78,7 @@ def translate(request):
         source_code = response['sourceCode']
         target_language = response['targetLanguage']
 
+        # Return source code if user selects same source and target languages
         if source_language==target_language:
             return JsonResponse({"Response":source_code})
 
