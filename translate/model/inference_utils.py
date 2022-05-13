@@ -1,5 +1,5 @@
-from run import *
-from bleu import _bleu
+from .run import *
+# from bleu import _bleu
 
 def convert_examples_to_features(examples, tokenizer, max_source_length, max_target_length, stage=None):
     features = []
