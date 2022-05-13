@@ -12,16 +12,17 @@ model_name_or_path = "uclanlp/plbart-python-en_XX" #"uclanlp/plbart-base" #uclan
 config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
 config = config_class.from_pretrained(model_name_or_path)
 tokenizer = tokenizer_class.from_pretrained("uclanlp/plbart-base")
+# model = model_class.from_pretrained(model_name_or_path) # load model
 
 
 model_cache_key = 'model_cache' 
-plbart_model = cache.get(model_cache_key)
+model = cache.get(model_cache_key)
 
-if plbart_model is None:
+if model is None:
     # your model isn't in the cache
     # so `set` it
-    plbart_model = model_class.from_pretrained(model_name_or_path) # load model
-    cache.set(model_cache_key, plbart_model, None) # save in the cache
+    model = model_class.from_pretrained(model_name_or_path) # load model
+    cache.set(model_cache_key, model, None) # save in the cache
     # in above line, None is the timeout parameter. It means cache forever
     print('\nModel is cached! \n')
 
@@ -29,10 +30,13 @@ if plbart_model is None:
 print('PLBART Model initialized! \n')
 
 
-def get_model(lang1, lang2, model):
+def get_model(lang1, lang2):
     load_model_path_prefix = model_path + lang1 + "-" + lang2 + "/"
     load_model_path = load_model_path_prefix + "checkpoint-best-bleu/pytorch_model.bin"
-    model.load_state_dict(torch.load(load_model_path, map_location=torch.device('cpu')))
+    
+    # model.load_state_dict(torch.load(load_model_path, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(load_model_path, map_location=torch.device('cpu'))) 
+    
     print("\nget_model OK")
     model.eval()
     return model
@@ -52,20 +56,23 @@ def process_python_output(prediction):
 
 def predict(source_language, target_language, source_code):
 
-    model = get_model(source_language, target_language, plbart_model)
+    model = get_model(source_language, target_language)
     model.to(device)
 
     eval_batch_size = 1
     max_source_length, max_target_length = 400, 400
+ 
+    # eval_examples, eval_dataloader = get_eval_dataloader(source_code, eval_batch_size, 
+    #                                                     max_source_length, max_target_length, tokenizer)
+    all_source_ids, all_source_mask = get_eval_tensors(source_code, max_source_length, max_target_length, tokenizer)
+    print("eval_tensors OK")
 
-    eval_examples, eval_dataloader = get_eval_dataloader(source_code, eval_batch_size, 
-                                                        max_source_length, max_target_length, tokenizer)
-
-    print("dataloader OK")
-    pred = sample_generation_single(eval_examples, eval_dataloader, model, model_type, tokenizer, 
-                            max_target_length, device)
-
+    # pred = sample_generation_single(eval_examples, eval_dataloader, model, model_type, tokenizer, 
+    #                         max_target_length, device)
+    pred = sample_generation_single(all_source_ids, all_source_mask, model, model_type, tokenizer, 
+                                max_target_length, device)
     print("generation OK\n")
+
     return process_python_output(pred[0])
 
 # eval_batch_size = 1
