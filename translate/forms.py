@@ -4,9 +4,9 @@ from .models import Input
 
 class InputForm(ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super(InputForm, self).__init__(*args, **kwargs)
-        self.fields['translated_code'].disabled = True
+    # def __init__(self, *args, **kwargs):
+    #     super(InputForm, self).__init__(*args, **kwargs)
+    #     self.fields['translated_code'].disabled = True
 
     class Meta:
         model = Input
