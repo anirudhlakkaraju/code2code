@@ -10,3 +10,6 @@ scipy
 sklearn
 sentencepiece
 transformers
+tree_sitter
+javalang
+astunparse
