@@ -1,0 +1,12 @@
+python
+codegen
+django
+djangorestframework
+django-widget-tweaks
+numpy
+pandas
+sacrebleu
+scipy
+sklearn
+sentencepiece
+transformers
