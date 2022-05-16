@@ -3,7 +3,9 @@ import torch
 from .inference_utils import *
 from django.core.cache import cache
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+model = None
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model_type = 'plbart'
 model_path = "translate/model/plbart/"
 
@@ -12,8 +14,6 @@ model_name_or_path = "uclanlp/plbart-python-en_XX" #"uclanlp/plbart-base" #uclan
 config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
 config = config_class.from_pretrained(model_name_or_path)
 tokenizer = tokenizer_class.from_pretrained("uclanlp/plbart-base")
-# model = model_class.from_pretrained(model_name_or_path) # load model
-
 
 model_cache_key = 'model_cache' 
 model = cache.get(model_cache_key)
@@ -73,7 +73,7 @@ def predict(source_language, target_language, source_code):
                                 max_target_length, device)
     print("generation OK\n")
 
-    return process_python_output(pred[0])
+    return pred[0]
 
 # eval_batch_size = 1
 # max_source_length, max_target_length = 400, 400
