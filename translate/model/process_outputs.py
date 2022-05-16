@@ -1,12 +1,12 @@
-from codegen_sources.preprocessing.lang_processors.cpp_processor import CppProcessor
-from codegen_sources.preprocessing.lang_processors.python_processor import PythonProcessor
-from codegen_sources.preprocessing.lang_processors.java_processor import JavaProcessor
-from codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
+from .output_processing.codegen_sources.preprocessing.lang_processors.cpp_processor import CppProcessor
+from .output_processing.codegen_sources.preprocessing.lang_processors.python_processor import PythonProcessor
+from .output_processing.codegen_sources.preprocessing.lang_processors.java_processor import JavaProcessor
+from .output_processing.codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
 
 
 def pretty(code):
-    py_processor = LangProcessor.processors["python"](root_folder="./build")
-    cpp_processor = LangProcessor.processors["cpp"](root_folder="./build")
+    py_processor = LangProcessor.processors["python"](root_folder="./output_processing/build")
+    cpp_processor = LangProcessor.processors["cpp"](root_folder="./output_processing/build")
     # java_processor = LangProcessor.processors["java"](root_folder="./build")
 
     #You most probably dot need the tokenizers
