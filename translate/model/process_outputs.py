@@ -5,13 +5,13 @@ from .output_processing.codegen_sources.preprocessing.lang_processors.lang_proce
 
 
 def pretty(code):
-    py_processor = LangProcessor.processors["python"](root_folder="./output_processing/build")
-    cpp_processor = LangProcessor.processors["cpp"](root_folder="./output_processing/build")
+    py_processor = LangProcessor.processors["python"](root_folder="translate/model/output_processing/build")
+    cpp_processor = LangProcessor.processors["cpp"](root_folder="translate/model/output_processing/build")
     # java_processor = LangProcessor.processors["java"](root_folder="./build")
 
     #You most probably dot need the tokenizers
-    # py_tokenizer = py_processor.tokenize_code
-    # cpp_tokenizer = cpp_processor.tokenize_code
+    py_tokenizer = py_processor.tokenize_code
+    cpp_tokenizer = cpp_processor.tokenize_code
     # java_tokenizer = java_processor.tokenize_code
 
     #Use the detokenizers on the outputs
