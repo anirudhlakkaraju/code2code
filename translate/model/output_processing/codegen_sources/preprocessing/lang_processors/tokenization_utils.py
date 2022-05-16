@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 import re
-from sacrebleu import tokenize_v14_international
+import sacrebleu
 
 # IMPORTED
 NEWLINE_TOKEN = "NEWLINE_TOKEN"
@@ -58,7 +58,7 @@ def process_string(tok, char2tok, tok2char, is_comment, do_whole_processing=True
         return tok
 
     tok = re.sub(" +", " ", tok)
-    tok = tokenize_v14_international(tok)
+    tok = sacrebleu.tokenize_v14_international(tok)
     tok = re.sub(" +", " ", tok)
     tok = tok.replace("\r", "")
     for special_token, char in tok2char.items():

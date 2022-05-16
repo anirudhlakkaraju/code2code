@@ -8,7 +8,7 @@
 import javalang
 from javalang.tokenizer import Position, Identifier
 
-from codegen_sources.preprocessing.obfuscation.obfuscated_names_generator import (
+from .obfuscated_names_generator import (
     ObfuscatedNameType,
     ObfuscatedNamesGenerator,
 )

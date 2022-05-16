@@ -18,13 +18,13 @@ import logging
 from collections import defaultdict
 import astunparse
 
-from codegen_sources.preprocessing.obfuscation.bobskater_frameUtils import (
+from .bobskater_frameUtils import (
     Frame,
     FrameEntry,
     getIdsFromNode,
     setIdsOnNode,
 )
-from codegen_sources.preprocessing.obfuscation.obfuscated_names_generator import (
+from .obfuscated_names_generator import (
     ObfuscatedNamesGenerator,
     ObfuscatedNameType,
 )

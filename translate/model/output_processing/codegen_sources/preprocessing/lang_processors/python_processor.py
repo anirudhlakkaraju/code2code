@@ -4,14 +4,14 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 #
-from codegen_sources.preprocessing.lang_processors.tokenization_utils import (
+from .tokenization_utils import (
     process_string,
 )
-from codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
-from codegen_sources.preprocessing.obfuscation.bobskater_obfuscator import (
+from .lang_processor import LangProcessor
+from ..obfuscation.bobskater_obfuscator import (
     obfuscateString,
 )
-from codegen_sources.preprocessing.obfuscation.utils_deobfuscation import dico_to_string
+from ..obfuscation.utils_deobfuscation import dico_to_string
 
 import tokenize
 from io import BytesIO

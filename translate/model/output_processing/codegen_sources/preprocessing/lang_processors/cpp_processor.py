@@ -4,15 +4,15 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 #
-from codegen_sources.preprocessing.lang_processors.tree_sitter_processor import (
+from .tree_sitter_processor import (
     TreeSitterLangProcessor,
     NEW_LINE,
 )
-from codegen_sources.preprocessing.lang_processors.java_processor import (
+from .java_processor import (
     JAVA_TOKEN2CHAR,
     JAVA_CHAR2TOKEN,
 )
-from codegen_sources.preprocessing.lang_processors.tokenization_utils import ind_iter
+from .tokenization_utils import ind_iter
 import re
 
 IDENTIFIERS = {"identifier", "field_identifier"}

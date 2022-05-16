@@ -4,8 +4,8 @@
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
 #
-from codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
-from codegen_sources.preprocessing.lang_processors.tokenization_utils import (
+from .lang_processor import LangProcessor
+from .tokenization_utils import (
     process_string,
     replace_tokens,
     indent_lines,
