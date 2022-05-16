@@ -45,7 +45,7 @@ class TreeSitterLangProcessor(LangProcessor):
             lib_path = self.root_folder.joinpath(f"{self.language}.so")
             repo_path = self.root_folder.joinpath(f"tree-sitter-{self.language}")
             if not lib_path.exists():
-                assert repo_path.is_dir(), repo_path
+                # assert repo_path.is_dir(), repo_path
                 Language.build_library(
                     # Store the library in the `build` directory
                     str(lib_path),
