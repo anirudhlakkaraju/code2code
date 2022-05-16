@@ -11,7 +11,7 @@ from rest_framework.parsers import JSONParser
 from .forms import InputForm
 from .models import Input 
 from .serializers import InputSerializer 
-from .model.inference_utils import *
+from .model import inference_utils, process_outputs
 from translate.model.predict import predict 
 
 import torch
@@ -71,8 +71,6 @@ def translate(request):
         # Load user inputs
         response = json.loads(request.body)
 
-        # print(response)
-
         # Extract user inputs
         source_language = response['sourceLanguage']
         source_code = response['sourceCode']
@@ -84,7 +82,10 @@ def translate(request):
 
         # Predict target code
         translated_code = predict(source_language, target_language, source_code)
-    
+
+        # Make translated code pretty
+        translated_code = process_outputs.pretty(translated_code, target_language)
+
         # Return translated code to AJAX call       
         return JsonResponse({"Response":translated_code})
 
