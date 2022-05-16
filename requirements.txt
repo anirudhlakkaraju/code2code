@@ -9,6 +9,7 @@ sacrebleu
 scipy
 sklearn
 sentencepiece
+torch
 transformers
 tree_sitter
 javalang
