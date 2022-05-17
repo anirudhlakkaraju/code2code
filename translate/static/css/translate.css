@@ -1,39 +1,71 @@
-.main-box {
-    max-width: 70%;
-    min-height: 400px;
+.title {
+    height: 150;
+    font-family: 'Dongle', sans-serif;
+    font-size: 80;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30;
-    /* border: 3px solid black; */
+    background-color: lightgray;
+    /* border: 3px solid red; */
+}
+
+.main-box {
+    max-width: 100%;
+    min-height: 300;
+    /* border: 3px solid cyan; */
 }
 
 .box1 {
-    max-width: 100%;
-    min-height: 400;
+    max-width: 70%;
+    min-height: 300;
+    margin-top: 40;
     position: relative;
     /* border: 3px solid red; */
 }
 
 .box2 {
     margin-top: 20;
-    margin-bottom: 30;
+    margin-bottom: 40;
     /* border: 3px solid blue; */
 }
 
-.title {
-    margin-top:50;
-    font-family: 'Dongle', sans-serif;
-    font-size: 80;
-    /* border: 3px solid gold; */
+.spinner {
+    color: white;
+    visibility: hidden;
+    /* border: 3px solid white; */
+}
+
+.body {
+    background-color: black;
 }
 
 .two-font {
-    font-size: 65;
+    font-size: 120;
 }
 
-.text-font{
+.label-font{
+    font-size: 14;
+    /* font-family: 'Lexend Deca', sans-serif; */
+    font-family: 'Zilla Slab', serif;
+    color: lightgreen;
+}
+
+.drop-font{
     font-size: medium;
     font-family: 'Lexend Deca', sans-serif;
+    color: black;
+}
+
+.clear-font{
+    font-size: medium;
+    font-family: 'Lexend Deca', sans-serif;
+    color: black;
+}
+
+.submit-font{
+    font-size: medium;
+    font-family: 'Lexend Deca', sans-serif;
+    color: white;
 }
 
 .placeholder-font{
@@ -41,15 +73,6 @@
     font-family: 'Lexend Deca', sans-serif;
 }
 
-.spinner {
-    /* border: 3px solid black; */
-    color: white;
-}
-
 .button {
     margin: 5;
-}
-
-.body {
-    background-color: white;
 }
