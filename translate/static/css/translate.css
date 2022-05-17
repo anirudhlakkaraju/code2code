@@ -3,35 +3,53 @@
     min-height: 400px;
     justify-content: center;
     align-items: center;
-    margin-top: 50;
+    margin-top: 30;
     /* border: 3px solid black; */
 }
 
 .box1 {
     max-width: 100%;
-    min-height: 600;
+    min-height: 400;
     position: relative;
     /* border: 3px solid red; */
-
 }
 
 .box2 {
-    margin-top: 30;
+    margin-top: 20;
     margin-bottom: 30;
     /* border: 3px solid blue; */
-
 }
 
 .title {
-    margin-top: 50px;
-    font-size: 30px;
+    margin-top:50;
+    font-family: 'Dongle', sans-serif;
+    font-size: 80;
+    /* border: 3px solid gold; */
 }
 
-.font{
+.two-font {
+    font-size: 65;
+}
+
+.text-font{
     font-size: medium;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.placeholder-font{
+    font-size: medium;
+    font-family: 'Lexend Deca', sans-serif;
 }
 
 .spinner {
     /* border: 3px solid black; */
     color: white;
+}
+
+.button {
+    margin: 5;
+}
+
+.body {
+    background-color: white;
 }
