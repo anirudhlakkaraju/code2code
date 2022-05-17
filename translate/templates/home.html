@@ -8,45 +8,46 @@
 
     <header>
         <link rel="stylesheet"  href="{%  static  'css/translate.css'  %}">
-        <h1 class="text-center title"><a class="text-decoration-none" style="color: rgb(6, 6, 158);" href="{% url 'home'%}">CODE</a><a class="text-decoration-none two-font" style="color: rgb(215, 140, 20);" href="{% url 'home'%}">2</a><a class="text-decoration-none" style="color: rgb(6, 6, 158);" href="{% url 'home'%}">CODE</a></h1>
-        <!-- <h1 class="text-center title"><a class="text-decoration-none"  href="{% url 'home'%}"><span class="code">CODE</span><span class="two">2</span><span class="code">CODE</span></a></h1> -->
-
+        <h1 class="title">
+            <a class="text-decoration-none" style="color: rgb(6, 6, 158);" href="{% url 'home'%}">CODE</a>
+            <a class="text-decoration-none two-font" style="color: rgb(215, 140, 20);" href="{% url 'home'%}">2</a>
+            <a class="text-decoration-none" style="color: rgb(6, 6, 158);" href="{% url 'home'%}">CODE</a>
+        </h1>        
     </header>
 
     <form id="inputForm" action="" method="post">
 
         {% csrf_token %}
        <div class="container main-box">
-           
            <div class="container-sm box1">
                 <div class="container form-row">
                     <div class="form-group col-md-6">
-                        <label for="SourceLanguageSelection" class="text-font">Source Language</label>
-                        {% render_field form.source_language id="SourceLanguageSelection" class="form-control text-font" %}
+                        <label for="SourceLanguageSelection" class="label-font">SOURCE LANGUAGE</label>
+                        {% render_field form.source_language id="SourceLanguageSelection" class="form-control drop-font" %}
                     </div>
             
                     <div class="form-group col-md-6">
-                        <label for="TargetLanguageSelection" class="text-font">Target Language</label>
-                        {% render_field form.target_language id="TargetLanguageSelection" class="form-control text-font" %}
+                        <label for="TargetLanguageSelection" class="label-font">TARGET LANGUAGE</label>
+                        {% render_field form.target_language id="TargetLanguageSelection" class="form-control drop-font" %}
                     </div>
                 </div>
                
            
                 <div class="container form-row">
                     <div class="form-group col-md-6">
-                        <label for="SourceCodeInput" class="text-font">Source Code</label>
+                        <label for="SourceCodeInput" class="label-font">SOURCE CODE</label>
                         {% render_field form.source_code type="text" class="form-control placeholder-font" id="SourceCode" oninput="update(this.value);" placeholder="Type your source code here" %}
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="TranslatedCode" class="text-font">Translated Code</label>
+                        <label for="TranslatedCode" class="label-font">TRANSLATED CODE</label>
                         {% render_field form.translated_code type="text" class="form-control placeholder-font" id="TranslatedCode" placeholder="Translation" %}
                     </div>
                 </div>
-               
+            
                 <div class="container box2">
                    <div class="text-center">
-                       <input type="submit" class="btn btn-primary text-font button" id="translateButton" value="Translate">
-                       <button type="button" class="btn btn-warning text-font button" onclick="this.form.reset();">Clear</button>
+                       <input type="submit" class="btn btn-primary submit-font button" id="translateButton" value="Translate">
+                       <button type="button" class="btn btn-warning clear-font button" onclick="this.form.reset();">Clear</button>
                    </div>
                 </div>
 
@@ -58,9 +59,7 @@
             </div>
         </div> 
 
-        <pre id="highlighting" aria-hidden="true">
-            <code class="language-html" id="highlighting-content"></code>
-        </pre>
+        
     </form>
 
 {% endblock %}
@@ -70,14 +69,6 @@
 
 <script>
 
-    function update(text) {
-        let result_element = document.querySelector("#highlighting-content");
-        // Update code
-        result_element.innerText = text;
-        // Syntax Highlight
-        Prism.highlightElement(result_element);
-    }
-    
     console.log("inside AJAX call");
 
     // Send form inputs to "/translate" url as POST request
@@ -85,7 +76,7 @@
 
     const inputForm = document.getElementById("inputForm");
     var token = '{{csrf_token}}';
-    const spinner = document.getElementById("Spinner")
+    var spinner = document.getElementById("Spinner")
     const translateButton = document.getElementById("translateButton")
 
     // Function to execute on submitting form
@@ -106,7 +97,7 @@
         console.log(inputFormResponse)
 
         // Show loading gif 
-        spinner.style.color = 'black'
+        spinner.style.visibility = "visible"
 
         // Disable translate button to prevent multiple clicks
         translateButton.setAttribute("disabled","disabled")
@@ -129,7 +120,7 @@
         // Display translated text
 
         // Remove spinner
-        spinner.style.color = 'white'
+        spinner.style.visibility = "hidden"
 
         // Enable translate button again
         translateButton.removeAttribute("disabled")
