@@ -1,11 +1,11 @@
 .title {
-    height: 150;
-    font-family: 'Dongle', sans-serif;
-    font-size: 80;
+    height: 180;
+    font-family: 'Akshar', sans-serif;
+    font-size: 70;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
+    background-color: black
     /* border: 3px solid red; */
 }
 
@@ -18,61 +18,70 @@
 .box1 {
     max-width: 70%;
     min-height: 300;
-    margin-top: 40;
+    margin-top: 35;
     position: relative;
     /* border: 3px solid red; */
 }
 
 .box2 {
     margin-top: 20;
-    margin-bottom: 40;
+    margin-bottom: 20;
     /* border: 3px solid blue; */
 }
 
 .spinner {
-    color: white;
+    color: black;
     visibility: hidden;
     /* border: 3px solid white; */
 }
 
 .body {
-    background-color: black;
+    background-color: whitesmoke;
 }
 
 .two-font {
-    font-size: 120;
+    font-size: 70;
+    font-family: 'Indie Flower', cursive;
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Space Mono', monospace; */
+    /* font-weight: 200;  */
 }
 
 .label-font{
-    font-size: 14;
-    /* font-family: 'Lexend Deca', sans-serif; */
-    font-family: 'Zilla Slab', serif;
-    color: lightgreen;
+    font-size: 18;
+    font-family: 'Akshar', sans-serif;
+    color: black;
 }
 
 .drop-font{
-    font-size: medium;
-    font-family: 'Lexend Deca', sans-serif;
+    font-size: 16;
+    font-family: 'Akshar', sans-serif;
+    font-weight: 500;
     color: black;
 }
 
 .clear-font{
-    font-size: medium;
-    font-family: 'Lexend Deca', sans-serif;
-    color: black;
+    font-size: 18;
+    font-family: 'Akshar', sans-serif;
+    color: white;
 }
 
 .submit-font{
-    font-size: medium;
-    font-family: 'Lexend Deca', sans-serif;
+    font-size: 18;
+    font-family: 'Akshar', sans-serif;
     color: white;
 }
 
 .placeholder-font{
-    font-size: medium;
-    font-family: 'Lexend Deca', sans-serif;
+    font-size: 18;
+    font-family: 'Akshar', sans-serif;
+    font-weight: 400;
 }
 
 .button {
     margin: 5;
 }
+
+
+/* blue : rgb(0, 0, 228)
+Yellow: rgb(253, 156, 0) */
