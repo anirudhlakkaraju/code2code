@@ -24,12 +24,12 @@ import time
 from django.shortcuts import render, redirect 
 from django.contrib import messages 
 
-
 def index(request):
+# Reroutes localhost/ to localhost/home
     return HttpResponseRedirect('/home')
 
+
 def home(request):
-    
     # Creates empty form on GET request
     form = InputForm()
     return render(request, 'home.html', {'form': form})
@@ -65,4 +65,4 @@ def translate(request):
 
     else:
         # Empty Endpoint
-        return HttpResponse("Works!")
+        return HttpResponse("GET endpoint!")
