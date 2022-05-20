@@ -12,7 +12,7 @@ def pretty(code, lang):
     }
 
     # Initializes object to process given code 
-    processor = LangProcessor.processors[lang](root_folder="translate/model/output_processing/build")
+    processor = LangProcessor.processors[lang_selection[lang]](root_folder="translate/model/output_processing/build")
 
     # Use the detokenizers on the outputs
     detokenizer = processor.detokenize_code
