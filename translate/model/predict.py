@@ -6,27 +6,26 @@ from django.core.cache import cache
 # Initializes model globally as None
 model = None
 
-# # Setup device and model paths
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# model_type = 'plbart'
-# model_path = "translate/model/plbart/"
+# Setup device and model paths
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model_type = 'plbart'
+model_path = "translate/model/plbart/"
 
-# # Download model config and tokenizers on runserver. Executes ONLY ONCE
-# model_name_or_path = "uclanlp/plbart-python-en_XX" #"uclanlp/plbart-base" #uclanlp/plbart-python-en_XX
-# config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
-# config = config_class.from_pretrained(model_name_or_path)
-# tokenizer = tokenizer_class.from_pretrained("uclanlp/plbart-base")
+# Download model config and tokenizers on runserver. Executes ONLY ONCE when server is started.
+model_name_or_path = "uclanlp/plbart-python-en_XX" #"uclanlp/plbart-base" #uclanlp/plbart-python-en_XX
+config_class, model_class, tokenizer_class = MODEL_CLASSES[model_type]
+config = config_class.from_pretrained(model_name_or_path)
+tokenizer = tokenizer_class.from_pretrained("uclanlp/plbart-base")
 
-# # Key to retrieve model from cache
-# model_cache_key = 'model_cache' 
-# model = cache.get(model_cache_key)
+# Key to retrieve model from cache
+model_cache_key = 'model_cache' 
+model = cache.get(model_cache_key)
 
-# # Load model if not present in cache
-# if model is None:
-#     model = model_class.from_pretrained(model_name_or_path) # load model
-#     cache.set(model_cache_key, model, None) # save in the cache
-#     # in above line, None is the timeout parameter. It means cache forever
-#     print('\nModel is cached!')
+# Load model if not present in cache
+if model is None:
+    model = model_class.from_pretrained(model_name_or_path) # load model
+    cache.set(model_cache_key, model, None) # save in the cache
+    # in above line, None is the timeout parameter. It means cache forever
 
 print('PLBART Model initialized! \n')
 
@@ -45,7 +44,7 @@ def get_model(lang1, lang2):
     return model
 
     
-# Method to format Python outputs
+# Method to format Python outputs. (UNUSED)
 def process_python_output(prediction):
     lines = prediction.split("NEW_LINE")
     curr_indent = 0
@@ -71,7 +70,7 @@ def predict(source_language, target_language, source_code):
     all_source_ids, all_source_mask = get_eval_tensors(source_code, max_source_length, max_target_length, tokenizer)
     print("eval_tensors OK")
 
-    # Generates prediction
+    # Generates prediction 
     pred = sample_generation_single(all_source_ids, all_source_mask, model, model_type, tokenizer, 
                                 max_target_length, device)
     print("generation OK\n")
