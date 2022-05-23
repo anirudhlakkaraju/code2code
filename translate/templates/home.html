@@ -13,6 +13,7 @@
             <a class="text-decoration-none two-font" style="color: rgb(220, 110, 20);" href="{% url 'home'%}"> 2 </a>
             <a class="text-decoration-none" style="color: whitesmoke;" href="{% url 'home'%}">CODE</a>
         </h1>        
+        {{ form.media }}
     </header>
 
     <form id="inputForm" action="" method="post">
@@ -36,7 +37,7 @@
                 <div class="container form-row">
                     <div class="form-group col-md-6">
                         <label for="SourceCodeInput" class="label-font">SOURCE CODE</label>
-                        {% render_field form.source_code type="text" class="form-control placeholder-font" id="SourceCode" oninput="update(this.value);" placeholder="Type your source code here" %}
+                        {% render_field form.source_code type="text" class="form-control placeholder-font" id="SourceCode" placeholder="Type your source code here"%}
                     </div>
                     <div class="form-group col-md-6">
                         <label for="TranslatedCode" class="label-font">TRANSLATED CODE</label>
@@ -59,16 +60,38 @@
             </div>
         </div> 
 
-        
+        <input type="submit"/>
     </form>
+
 
 {% endblock %}
 
 
 {% block javascript %}
 
+
 <script>
 
+    // ACE Auto detect
+    // var modelist = ace.require("ace/ext/modelist");
+    // var editor = ace.edit("editor");
+    // editor.renderer.setScrollMargin(40, 150)
+    // document.getElementById('editor').style.fontSize = '15px';
+    // editor.setTheme("ace/theme/dracula");
+
+    // var full_path = "{{ file.directory_path }}";
+    // document.getElementById("demo").innerHTML = full_path
+    // var mode = modelist.getModeForPath(full_path);//mode
+    // console.log(mode);
+    // editor.session.setMode(mode.mode);
+    // //Ace editor autocompletion
+    // editor.setOptions({
+    //     enableBasicAutocompletion: true,
+    //     enableSnippets: true,
+    //     enableLiveAutocompletion: true
+    // });
+
+    ////////////////////////////////////////////////////////////////
     console.log("inside AJAX call");
 
     // Send form inputs to "/translate" url as POST request
@@ -129,5 +152,4 @@
         clearButton.removeAttribute("disabled")
     });
 </script>
-<!-- </script> -->
 {% endblock javascript %}
