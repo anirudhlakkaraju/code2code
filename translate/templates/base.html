@@ -7,6 +7,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+{% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -23,15 +24,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Akshar&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
         
-        
-        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-
-
-        <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Space+Mono&display=swap" rel="stylesheet">
+        <!-- ACE -->
+        <script src="{% static 'ace/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+        <script src="{% static 'ace/ext-modelist.js' %}"></script>
+        <script src="{% static 'ace/ext-language_tools.js' %}"></script>
 
     </head>
     <body class="body">
