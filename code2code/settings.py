@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'translate',
     'widget_tweaks',
     'rest_framework',
+    'django_ace'
 ]
 
 MIDDLEWARE = [
