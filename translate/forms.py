@@ -10,10 +10,10 @@ class InputForm(ModelForm):
         model = Input
 
         # Adding ACE editor 
-        # widgets = {
-        #     'source_code': AceWidget(mode="python", theme="twilight"),
-        #     'translated_code': AceWidget(mode="python", theme="chrome"),
-        # }
+        widgets = {
+            'source_code': AceWidget(mode="c_cpp", theme="twilight"),
+            'translated_code': AceWidget(mode="python", theme="chrome"),
+        }
 
         # The fields to include from Input model
         fields = ['source_language', 'source_code', 'target_language', 'translated_code']
