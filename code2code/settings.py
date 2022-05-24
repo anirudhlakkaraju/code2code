@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'translate',
     'widget_tweaks',
-    'rest_framework',
     'django_ace'
 ]
 
