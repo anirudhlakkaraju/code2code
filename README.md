@@ -21,9 +21,10 @@ In order to deploy this website, execute the following steps -
     |    |    ├── plbart
     |    |    |    ├── C++-Python
     |    |    |    |   ├── checkpoint-best-bleu
-    |    |    |    |   |    ├── pytorch_model.bin
+    |    |    |    |   |    ├── pytorch_model.bin       # Model Checkpoints to translate bw C++ and Python
     |    |    |    |── Python-C++
     |    |    |    |   ├── checkpoint-best-bleu
-    |    |    |    |   |    ├── pytorch_model.bin
+    |    |    |    |   |    ├── pytorch_model.bin       # Model Checkpoints to translate bw Python and C++
     ```
-4. 
+4. `python manage.py migrate
+    python manage.py makemigrations`
