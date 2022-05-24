@@ -26,5 +26,5 @@ In order to deploy this website, execute the following steps -
     |    |    |    |   ├── checkpoint-best-bleu
     |    |    |    |   |    ├── pytorch_model.bin       # Model Checkpoints to translate bw Python and C++
     ```
-4. `python manage.py migrate
-    python manage.py makemigrations`
+4. `python manage.py migrate`
+    `python manage.py makemigrations`
