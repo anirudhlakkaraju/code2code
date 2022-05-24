@@ -13,3 +13,17 @@ In order to deploy this website, execute the following steps -
 1. Install Python
 
 2. `pip install -r requirements.txt`
+
+3. Create the following folders in translate/model. They have to be added locally since git ignores .bin files. The plbart pre trained checkpoints are more than 500MB so they cannot be pushed.
+    ```
+    ├── Translate
+    |    ├── model
+    |    |    ├── plbart
+    |    |    |    ├── C++-Python
+    |    |    |    |   ├── checkpoint-best-bleu
+    |    |    |    |   |    ├── pytorch_model.bin
+    |    |    |    |── Python-C++
+    |    |    |    |   ├── checkpoint-best-bleu
+    |    |    |    |   |    ├── pytorch_model.bin
+    ```
+4. 
