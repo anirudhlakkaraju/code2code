@@ -82,6 +82,12 @@ This is the file tree with the important files and their roles.
 
 
 
+## Flowchart for Reference
+
+![Website Homepage Highlevel](translate/static/media/Website%20Flowchart%20Highlevel.png "Website Homepage with Ace") 
+
+
+
 ## Integrating the Model
 
 The model used for translation is PLBART, trained on XXXXX. The model's pretrained checkpints for the two programming language pairs `C++-Python` and `Python-C++` are stored in `/plbart` directory. 
@@ -116,4 +122,4 @@ This is how the website looks with Ace implemented.
 - Compiling source code provided by User to check for errors before translating. 
 - Adding fields to input test cases. 
 - Compile and run the testcases provided by integrating backend with online code editors (hackerearth api) or a docker container with images for each language. 
-- Add translations for new languages and models. The checkpoints can be stored in the server and the state dictionary is loaded for the particular language pair chosen. 
+- Add translations for new languages and models. The checkpoints can be stored in the server and the state dictionary can be loaded for the particular language pair chosen. 
