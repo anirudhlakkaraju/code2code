@@ -73,7 +73,7 @@ This is the file tree with important files and their roles.
 |   |   |   ├── translate.css   # CSS for home.html        
 |   ├── templates               # Folder contains HTML files
 |   |   ├── base.html           # HTML skeleton
-|   |   ├── home.html           # Homepage of website. Takes User input through form and displays translated output.     
+|   |   ├── home.html           # Homepage of website. Takes User input through form and displays translated output. Contains AJAX call javascript    
 |   ├── forms.py                # Defines the input form  
 |   ├── models.py               # Defines database and objects
 |   ├── urls.py                 # URLs specific to translate app
