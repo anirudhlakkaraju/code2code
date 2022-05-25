@@ -27,7 +27,7 @@ model = None
 #     cache.set(model_cache_key, model, None) # save in the cache
 #     # in above line, None is the timeout parameter. It means cache forever
 
-# print('PLBART Model initialized! \n')
+# print('\nPLBART Model initialized! \n')
 
 
 def get_model(lang1, lang2):
