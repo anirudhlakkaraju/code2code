@@ -18,7 +18,7 @@ This is how the homepage looks.
 
 ## Usage
 
-The website was built using Django famework and the frontend was designed using HTML and CSS. 
+The website was built using Django framework and the frontend was designed using HTML and CSS. 
 
 In order to deploy it, execute the following steps - 
 
@@ -93,25 +93,25 @@ This flowchart provides a highlevel view of what happens when a User provides in
 
 ## Integrating the Model
 
-The model used for translation is PLBART, trained on XXXXX. The model's pretrained checkpints for the two programming language pairs `C++-Python` and `Python-C++` are stored in `/plbart` directory. 
+The model used for translation is PLBART, trained on XXXXX. The model's pretrained checkpoints for the two programming language pairs `C++-Python` and `Python-C++` are stored in `translate/model/plbart` directory. 
 
-The model, it's config and the tokenizer are initialized from Huggingface and pretrained checkpoints are used to load the model's state dictionary. 
+The model, it's configuration and the tokenizer are initialized from Huggingface and the pretrained checkpoints are used to load the model's state dictionary. 
 
 There are three steps while doing the translation.
 
-1. Initializing the model, config and tokenizer from Hugginface.
-2. Loading specific model state dictionary based on the languages the User selected. 
-3. Making a prediction on one data point (the code inputed by User).
+1. Initializing the model, config and tokenizer from Huggingface.
+2. Loading specific model state dictionary based on the Source and Target programming languages the User selected. 
+3. Making a prediction on one data point (the Source Code inputted by User).
 
-While Steps 2 and 3 are dependent on User inputs, Step 1 is independent of the User and it's the most time consuming. Repeating Step 1 every time the User presses the Tranlsate button will take too long. 
+While Steps 2 and 3 are dependent on User inputs, Step 1 is independent of the User and it's the most time consuming. Repeating Step 1 every time the User presses the Translate button will take too long. 
 
-Which is why Step 1 (model initialization from Higgingface) is executed only ONCE, when server is started. Steps 2 and 3 happen whenever the User clicks the Translate button. 
+Which is why Step 1 (model initialization from Huggingface) is executed only ONCE, when server is started. Steps 2 and 3 happen whenever the User clicks the Translate button. 
 
 
 
 ## Syntax Highlighting 
 
-Ace editor is used as a field widget in `form.py` for syntax highlighting. It supports almost all programming languages and it provides many editor themes. 
+Ace editor is used as a field widget in `form.py` for syntax highlighting. It supports almost all programming languages, and it provides many editor themes. 
 
 The only issue with Ace currently is choosing the mode (programming language) beforehand in the backend. Ideally the mode should switch based on the programming language selected from the dropdowns.
 
@@ -123,9 +123,9 @@ This is how the website looks with Ace implemented. The theme on the left is `tw
 
 ## Next Steps
 
-- Implementing live syntax highlighing in the input textarea, based on the programming languages selected from the dropdowns. Currently, Ace editor is used for syntax highlighting, but the programming language has to be set in the backend.
+- Implementing live syntax highlighting in the input textarea, based on the programming languages selected from the dropdowns. Currently, Ace editor is used for syntax highlighting, but the programming language has to be set in the backend.
 
-- Compiling source code provided by User to check for errors before the model proceeds with prediction. 
+- Compiling Source Code provided by User to check for errors before the model proceeds with prediction. 
 
 - Adding input fields to input test cases. 
 
