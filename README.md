@@ -43,7 +43,8 @@ In order to deploy it, execute the following steps -
     `python manage.py makemigrations`
 
 5. Start server and visit http://127.0.0.1:8000/ \
-`python manage.py runserver`
+`python manage.py runserver` \
+(Note: The port can be changed if `8000` is in use by mentioning a different port like so - `python manage.py runserver 8080`)
 
 
 
