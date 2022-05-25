@@ -1,12 +1,12 @@
 # Code2Code Translator
 
-Code2Code Translator is a web interface built to showcase the working of Natural Language Processing (NLP) models that translate between Programming Languages (PL). 
+Code2Code Translator is a web interface built to showcase the workings of Natural Language Processing (NLP) models in translating between Programming Languages (PL). 
 
 
 
 ## What does this website do?
 
-This website is an interface that enables Users to provide source code by selecting their choice of source and target programming languages, then request a translation. 
+This website is an interface that enables Users to provide Source Code by selecting their choice of Source and Target Programming Languages, and then translate between the two. 
 
 As of now the website supports translation between two programming languages - `C++` and `Python`. The model used for translation is PLBART trained on XXXXXX.
 
@@ -26,7 +26,7 @@ In order to deploy it, execute the following steps -
 
 2. `pip install -r requirements.txt`
 
-3. Create the following folders in translate/model. They have to be added locally since git ignores .bin files. The plbart pre trained checkpoints are more than 500MB so they cannot be pushed.
+3. Create the following folders in `translate/model`. They have to manually be added to cloned repo locally since git ignores .bin files. This is because PLBART's pretrained checkpoints are more than 500MB so I could not push them to the remote repo from local machine.
     ```
     ├── translate
     |   ├── model
@@ -42,7 +42,7 @@ In order to deploy it, execute the following steps -
     `python manage.py migrate` \
     `python manage.py makemigrations`
 
-5. Start server. \
+5. Start server and visit http://127.0.0.1:8000/ \
 `python manage.py runserver`
 
 
@@ -51,7 +51,7 @@ In order to deploy it, execute the following steps -
 
 This project requires understanding of Django and how the files interact with each other. I really recommend trying out this tutorial if you're completely new to Django - https://tutorial.djangogirls.org/en/. 
 
-This is the file tree with the important files and their roles.
+This is the file tree with important files and their roles.
 
 ```
 ├── code2code                   # Main project app        
@@ -84,6 +84,8 @@ This is the file tree with the important files and their roles.
 
 ## Flowchart for Reference
 
+This flowchart provides a highlevel view of what happens when a User provides inputs and clicks the Translate button.
+
 ![Website Homepage Highlevel](translate/static/media/Website%20Flowchart%20Highlevel.png "Website Homepage with Ace") 
 
 
@@ -100,7 +102,7 @@ There are three steps while doing the translation.
 2. Loading specific model state dictionary based on the languages the User selected. 
 3. Making a prediction on one data point (the code inputed by User).
 
-While Steps 2 and 3 are dependent on User inputs, Step 1 is independent of the User and it's the most time consuming. Repeating Step 1 every time the User presses the tranlsate button will take too long. 
+While Steps 2 and 3 are dependent on User inputs, Step 1 is independent of the User and it's the most time consuming. Repeating Step 1 every time the User presses the Tranlsate button will take too long. 
 
 Which is why Step 1 (model initialization from Higgingface) is executed only ONCE, when server is started. Steps 2 and 3 happen whenever the User clicks the Translate button. 
 
@@ -108,9 +110,11 @@ Which is why Step 1 (model initialization from Higgingface) is executed only ONC
 
 ## Syntax Highlighting 
 
-Ace editor is used as a widget for syntax highlighting. It supports almost all languages and it provides many themes. The only issue with Ace is choosing the mode (language) beforehand in the backend. Ideally the highlighting should happen based on which languages were selected from the dropdowns.
+Ace editor is used as a field widget in `form.py` for syntax highlighting. It supports almost all programming languages and it provides many editor themes. 
 
-This is how the website looks with Ace implemented. 
+The only issue with Ace currently is choosing the mode (programming language) beforehand in the backend. Ideally the mode should switch based on the programming language selected from the dropdowns.
+
+This is how the website looks with Ace implemented. The theme on the left is `twilight` and the theme on the right is `chrome`.
 
 ![Website Homepage with Ace](translate/static/media/homepage%20v2.png "Website Homepage with Ace") 
 
@@ -118,8 +122,12 @@ This is how the website looks with Ace implemented.
 
 ## Next Steps
 
-- Implementing live syntax highlighing in the input textarea, based on the languages selected from the dropdown. Currently, Ace editor is used for syntax highlighting, but the language has to be set in the backend. 
-- Compiling source code provided by User to check for errors before translating. 
-- Adding fields to input test cases. 
-- Compile and run the testcases provided by integrating backend with online code editors (hackerearth api) or a docker container with images for each language. 
-- Add translations for new languages and models. The checkpoints can be stored in the server and the state dictionary can be loaded for the particular language pair chosen. 
+- Implementing live syntax highlighing in the input textarea, based on the programming languages selected from the dropdowns. Currently, Ace editor is used for syntax highlighting, but the programming language has to be set in the backend.
+
+- Compiling source code provided by User to check for errors before the model proceeds with prediction. 
+
+- Adding input fields to input test cases. 
+
+- Compile and run the testcases provided by integrating backend with online code editors (hackerearth api) or a docker container with images for each programming language. 
+
+- Expand the types of models (CodeBERT, GraphCodeBERT, etc) with support for more programming languages (Java, C, C#, Javascript, PHP). The checkpoints can be stored in the server and the state dictionary can be loaded for the particular programming language pair chosen for translation. 
