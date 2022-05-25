@@ -87,7 +87,7 @@ This is the file tree with important files and their roles.
 
 This flowchart provides a highlevel view of what happens when a User provides inputs and clicks the Translate button.
 
-![Website Homepage Highlevel](translate/static/media/Website%20Flowchart%20Highlevel.png "Website Homepage with Ace") 
+![Website Homepage Highlevel](translate/static/media/Website%20Flowchart%20Highlevel.png "Website Homepage Highlevel View") 
 
 
 
