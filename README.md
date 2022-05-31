@@ -8,7 +8,7 @@ Code2Code Translator is a web interface built to showcase the workings of Natura
 
 This website is an interface that enables Users to provide Source Code by selecting their choice of Source and Target Programming Languages, and then translate between the two. 
 
-As of now the website supports translation between two programming languages - `C++` and `Python`. The model used for translation is PLBART trained on XXXXXX.
+As of now the website supports translation between two programming languages - `C++` and `Python`. The model used for translation is PLBART.
 
 This is how the homepage looks.
 
@@ -83,17 +83,9 @@ This is the file tree with important files and their roles.
 
 
 
-## Flowchart for Reference
-
-This flowchart provides a highlevel view of what happens when a User provides inputs and clicks the Translate button.
-
-![Website Homepage Highlevel](translate/static/media/Website%20Flowchart%20Highlevel.png "Website Homepage Highlevel View") 
-
-
-
 ## Integrating the Model
 
-The model used for translation is PLBART, trained on XXXXX. The model's pretrained checkpoints for the two programming language pairs `C++-Python` and `Python-C++` are stored in `translate/model/plbart` directory. 
+The model used for translation is PLBART. The model's pretrained checkpoints for the two programming language pairs `C++-Python` and `Python-C++` are stored in `translate/model/plbart` directory. 
 
 The model, it's configuration and the tokenizer are initialized from Huggingface and the pretrained checkpoints are used to load the model's state dictionary. 
 
@@ -106,6 +98,14 @@ There are three steps while doing the translation.
 While Steps 2 and 3 are dependent on User inputs, Step 1 is independent of the User and it's the most time consuming. Repeating Step 1 every time the User presses the Translate button will take too long. 
 
 Which is why Step 1 (model initialization from Huggingface) is executed only ONCE, when server is started. Steps 2 and 3 happen whenever the User clicks the Translate button. 
+
+
+
+## Flowchart for Reference
+
+This flowchart provides a detialed view of the workflow when a User provides inputs and clicks the Translate button.
+
+![Website Homepage Flowchart](translate/static/media/Detailed%20workflow.png "Website Homepage Workflow") 
 
 
 
