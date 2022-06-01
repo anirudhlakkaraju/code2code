@@ -1,0 +1,15 @@
+codegen
+django
+django-widget-tweaks
+numpy
+pandas
+sacrebleu
+scipy
+sklearn
+sentencepiece
+torch
+transformers
+tree_sitter
+javalang
+astunparse
+django_ace
