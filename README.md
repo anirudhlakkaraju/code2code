@@ -132,3 +132,9 @@ This is how the website looks with Ace implemented. The theme on the left is `tw
 - Compile and run the testcases provided by integrating backend with online code editors (hackerearth api) or a docker container with images for each programming language. 
 
 - Expand the types of models (CodeBERT, GraphCodeBERT, etc) with support for more programming languages (Java, C, C#, Javascript, PHP). The checkpoints can be stored in the server and the state dictionary can be loaded for the particular programming language pair chosen for translation. 
+
+- Caching - https://luajit.org/, https://towardsdatascience.com/serving-pytorch-models-with-torchserve-6b8e8cbdb632
+
+## Deploying
+
+Resources.... 
