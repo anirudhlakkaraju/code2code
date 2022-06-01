@@ -133,8 +133,10 @@ This is how the website looks with Ace implemented. The theme on the left is `tw
 
 - Expand the types of models (CodeBERT, GraphCodeBERT, etc) with support for more programming languages (Java, C, C#, Javascript, PHP). The checkpoints can be stored in the server and the state dictionary can be loaded for the particular programming language pair chosen for translation. 
 
-- Caching - https://luajit.org/, https://towardsdatascience.com/serving-pytorch-models-with-torchserve-6b8e8cbdb632
+- Implement better model caching. The following resources can be useful - https://luajit.org/, https://towardsdatascience.com/serving-pytorch-models-with-torchserve-6b8e8cbdb632
 
-## Deploying
+
+
+## Deploying website on VT server
 
 Resources.... 
