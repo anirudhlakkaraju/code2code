@@ -46,12 +46,12 @@ def translate(request):
             return JsonResponse({"Response":source_code})
 
         # Predict target code
-        # translated_code = predict(source_language, target_language, source_code)
+        translated_code = predict(source_language, target_language, source_code)
 
         # Make translated code pretty
-        # translated_code = process_outputs.pretty(translated_code, target_language)
+        translated_code = process_outputs.pretty(translated_code, target_language)
 
-        time.sleep(3)
+        # time.sleep(3)
 
         # Return translated code to AJAX call       
         return JsonResponse({"Response":source_code})
